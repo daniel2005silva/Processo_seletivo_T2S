@@ -18,6 +18,7 @@ import { DeleteMovimentacaoComponent } from './crud/movimentacao/delete-moviment
 import { EditMovimentacaoComponent } from './crud/movimentacao/edit-movimentacao/editMovimentacao.component';
 import { ReadMovimentacaoComponent } from './crud/movimentacao/read-movimentacao/readMovimentacao.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { DataEHoraPipe } from './pipes/data-e-hora.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
     DeleteMovimentacaoComponent,
     EditMovimentacaoComponent,
     ReadMovimentacaoComponent,
-    RelatoriosComponent
+    RelatoriosComponent,
+    DataEHoraPipe
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,9 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    DataEHoraPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
