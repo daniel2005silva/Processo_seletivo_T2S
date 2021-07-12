@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-pretao fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../">
+      <img src="assets/images/logoT2S.png" width="50">
+    </a>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/conteiner">Conteiners</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/movimentacao">Movimentações</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/relatorios">Relatórios</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="corpo">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="text-center footer navbar-fixed-bottom  bg-pretao">
+  <div class="text-center p-3 text-light" style="background-color: rgba(0, 0, 0, 0.2);">
+    ©2021 - Desenvolvido por 
+    <a class="text-light" href="#" target="_blank">Daniel Barbosa da Silva</a>
+  </div>
+</footer>

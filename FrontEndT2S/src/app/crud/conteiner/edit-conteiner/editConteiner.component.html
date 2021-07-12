@@ -1,0 +1,139 @@
+<div class="grupo-centralizador">
+  <div class="card balaoMensagemCrud bg-secondary"  *ngIf="balaoRetornoCrud">
+    <div class="card-header text-center text-warning">
+      <b>Aviso</b>
+    </div>
+    <div class="card-body">
+      <p>{{mensagem}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="jumbotron cabecalho">
+    <br>
+    <br>
+    <h1 class="display-4 titulo">EDITANDO CONTEINER</h1>
+    <br>
+  </div>
+
+    <a href="conteiner" class="float-right">
+        <button type="button" class="btn btn-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"/>
+            </svg>
+        </button>
+    </a>
+
+    <br>
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onEdit()">
+        
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Cliente *</label>
+              <input type="text" 
+                     formControlName="cliente" 
+                     class="form-control center"
+                     [ngClass]="{ 'is-invalid': submitted && f.cliente.errors }"
+                     [ngModel]="retorno?.cliente">
+              <div *ngIf="submitted && f.cliente.errors" class="invalid-feedback">
+                <div *ngIf="f.cliente.errors.required">
+                    Nome do cliente é obrigatório.
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Número do Conteiner *</label>
+              <input type="text" 
+                     formControlName="num_container" 
+                     class="form-control center"
+                     [ngClass]="{ 'is-invalid': submitted && f.num_container.errors }"
+                     [ngModel]="retorno?.num_container">
+              <div *ngIf="submitted && f.num_container.errors" class="invalid-feedback">
+                <div *ngIf="f.num_container.errors.required">
+                    Número do conteiner é obrigatório.
+                </div>
+                <div *ngIf="f.num_container.errors.pattern">
+                    Número do conteiner precisa de 4 letras maiúsculas seguidas por 7 números.
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Categoria *</label>
+              <select class="form-select form-control center" 
+                  aria-label="Default select example" 
+                  formControlName="categoria"
+                  [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }"
+                  [ngModel]="retorno?.categoria">
+                <option value="IMPORTAÇÃO">Importação</option>
+                <option value="EXPORTAÇÃO">Exportação</option>
+              </select>
+              <div *ngIf="submitted && f.categoria.errors" class="invalid-feedback">
+                <div *ngIf="f.categoria.errors.required">
+                    Categoria é obrigatório.
+                </div>
+              </div>
+            </div>
+        
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Status *</label>
+              <select class="form-select form-control center" 
+                  aria-label="Default select example" 
+                  formControlName="status"
+                  [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                  [ngModel]="retorno?.status">
+                <option value="CHEIO">Cheio</option>
+                <option value="VAZIO">Vazio</option>
+              </select>
+              <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                <div *ngIf="f.status.errors.required">
+                    Status é obrigatório.
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Tipo *</label>
+                <select class="form-select form-control center" 
+                    aria-label="Default select example" 
+                    formControlName="tipo"
+                    [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }"
+                    [ngModel]="retorno?.tipo">
+                  <option value="20">20</option>
+                  <option value="40">40</option>
+                </select>
+                <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                  <div *ngIf="f.tipo.errors.required">
+                      Tipo é obrigatório.
+                  </div>
+                </div>
+              </div>
+        
+              <br>
+        <div class="form-group center">
+            <button
+              type="button"
+              (click)="onReset()"
+              class="btn btn-warning marginRight"
+            >
+              Limpar
+            </button>
+
+            <button type="submit" class="btn btn-primary" 
+              [disabled]="!(f.cliente.valid && f.num_container.valid && f.categoria.valid && f.status.valid && f.tipo.valid)">
+                Salvar
+            </button>
+            
+          </div>
+          <br>
+          <br>
+      </form> 
+    
+</div>
+

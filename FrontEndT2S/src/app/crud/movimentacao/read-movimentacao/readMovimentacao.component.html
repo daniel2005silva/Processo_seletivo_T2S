@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="jumbotron cabecalho">
+        <br>
+        <br>
+        <h1 class="display-4 titulo">MOVIMENTAÇÃO</h1>
+        <br>
+    </div>
+
+    <a href="movimentacao" class="float-right">
+        <button type="button" class="btn btn-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"/>
+            </svg>
+        </button>
+    </a>
+
+    <br>
+    <br>
+    <form [formGroup]="form">
+      
+        <div class="row">
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Cliente</label>
+                <input type="text" 
+                       formControlName="cliente" 
+                       class="form-control center"
+                       [ngModel]="retorno?.conteiner?.cliente"
+                       readonly="true">
+            </div>
+
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Código</label>
+                <input type="text" 
+                       formControlName="id" 
+                       class="form-control center"
+                       [ngModel]="retorno?.id"
+                       readonly="true">
+              </div>
+        </div>
+        
+        <br>
+        <div class="row">
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Conteiner</label>
+                <input type="text" 
+                       formControlName="num_container" 
+                       class="form-control center"
+                       [ngModel]="retorno?.conteiner?.num_container"
+                       readonly="true">
+              </div>
+
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Tipo</label>
+                <input type="text" 
+                       formControlName="tipo" 
+                       class="form-control center"
+                       [ngModel]="retorno?.tipo"
+                       readonly="true">
+              </div>
+        </div>
+        
+        <br>
+        <div class="row">
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Categoria</label>
+                <input type="text" 
+                       formControlName="categoria" 
+                       class="form-control center"
+                       [ngModel]="retorno?.conteiner?.categoria"
+                       readonly="true">
+              </div>
+
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Data e Hora de Início</label>
+                <input type="text" 
+                       formControlName="dt_hr_inicio" 
+                       class="form-control center"
+                       [ngModel]="retorno?.dt_hr_inicio"
+                       readonly="true">
+              </div>
+        </div>
+           
+        <br>
+        <div class="row">
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Status</label>
+                <input type="text" 
+                       formControlName="status" 
+                       class="form-control center"
+                       [ngModel]="retorno?.conteiner?.status"
+                       readonly="true">
+              </div>
+
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Data e Hora de Fim</label>
+                <input type="text" 
+                       formControlName="dt_hr_fim" 
+                       class="form-control center"
+                       [ngModel]="retorno?.dt_hr_fim"
+                       readonly="true">
+              </div>
+        </div>
+           
+        <br>
+        <div class="row">
+           <div class="col-4 form-group center">
+                <label class="sub-titulo">Tipo do Conteiner</label>
+                <input type="text" 
+                       formControlName="tipoConteiner" 
+                       class="form-control center"
+                       [ngModel]="retorno?.conteiner?.tipo"
+                       readonly="true">
+              </div>
+
+              <div class="col-4 form-group center"></div>
+        </div>
+      </form> 
+    <br>
+    <br>
+</div>
+

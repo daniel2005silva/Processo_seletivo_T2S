@@ -1,0 +1,106 @@
+<div class="grupo-centralizador">
+    <div class="card balaoMensagemCrud bg-secondary"  *ngIf="balaoRetornoCrud">
+      <div class="card-header text-center text-warning">
+        <b>Aviso</b>
+      </div>
+      <div class="card-body">
+        <p>{{mensagem}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="jumbotron cabecalho">
+        <br>
+        <br>
+        <h1 class="display-4 titulo">APAGANDO CONTEINER</h1>
+        <br>
+    </div>
+
+    <a href="conteiner" class="float-right">
+        <button type="button" class="btn btn-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"/>
+            </svg>
+        </button>
+    </a>
+
+    <br>
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onDelete()">
+        
+        <div class="col-4 form-group center">
+            <label class="sub-titulo">Código</label>
+            <input type="text" 
+                   formControlName="id" 
+                   class="form-control center"
+                   [ngModel]="retorno?.id"
+                   readonly="true">
+        </div>
+        
+        <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Cliente</label>
+              <input type="text" 
+                     formControlName="cliente" 
+                     class="form-control center"
+                     [ngModel]="retorno?.cliente"
+                     readonly="true">
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Número do Conteiner</label>
+              <input type="text" 
+                     formControlName="num_container" 
+                     class="form-control center"
+                     [ngModel]="retorno?.num_container"
+                     readonly="true">
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Categoria</label>
+              <input type="text" 
+                     formControlName="categoria" 
+                     class="form-control center"
+                     [ngModel]="retorno?.categoria"
+                     readonly="true">
+            </div>
+        
+            <br>
+            <div class="col-4 form-group center">
+              <label class="sub-titulo">Status</label>
+              <input type="text" 
+                     formControlName="status" 
+                     class="form-control center"
+                     [ngModel]="retorno?.status"
+                     readonly="true">
+            </div>
+
+            <br>
+            <div class="col-4 form-group center">
+                <label class="sub-titulo">Tipo</label>
+                <input type="text" 
+                     formControlName="tipo" 
+                     class="form-control center"
+                     [ngModel]="retorno?.tipo"
+                     readonly="true">
+              </div>
+        
+              <br>
+        <div class="form-group center">
+            
+
+            <button type="submit" class="btn btn-primary" 
+              [disabled]="!(f.cliente.valid && f.num_container.valid && f.categoria.valid && f.status.valid && f.tipo.valid)">
+                Apagar
+            </button>
+            
+          </div>
+          <br>
+          <br>
+      </form> 
+    
+</div>
+

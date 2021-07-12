@@ -1,0 +1,132 @@
+<div class="grupo-centralizador">
+    <div class="card balaoMensagemCrud bg-secondary"  *ngIf="balaoRetornoCrud">
+      <div class="card-header text-center text-warning">
+        <b>Aviso</b>
+      </div>
+      <div class="card-body">
+        <p>{{mensagem}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="jumbotron cabecalho">
+        <br>
+        <br>
+        <h1 class="display-4 titulo">APAGANDO MOVIMENTAÇÃO</h1>
+        <br>
+    </div>
+
+    <a href="movimentacao" class="float-right">
+        <button type="button" class="btn btn-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"/>
+            </svg>
+        </button>
+    </a>
+
+    <br>
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onDelete()">
+        
+        <div class="col-4 form-group center">
+            <label class="sub-titulo">Conteiner *</label>
+            <input type="text" class="center"
+                       formControlName="conteiner" 
+                       class="form-control center"
+                       [ngClass]="{ 'is-invalid': submitted && f.conteiner.errors }"
+                       [ngModel]="conteiner_aux"
+                       readonly="true">
+          </div>
+
+              <br>
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Tipo *</label>
+                <input type="text" class="center"
+                    formControlName="tipo" 
+                    class="form-control center"
+                    [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }"
+                    [ngModel]="retorno?.tipo"
+                    readonly="true">
+              </div>
+              
+              <br>
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Data de Início *</label>
+                <input type="date" 
+                       formControlName="dt_inicio" 
+                       class="form-control center"
+                       [ngClass]="{ 'is-invalid': submitted && f.dt_inicio.errors }"
+                       [ngModel]="dt_inicio_aux"
+                       readonly="true">
+                <div *ngIf="submitted && f.dt_inicio.errors" class="invalid-feedback">
+                  <div *ngIf="f.dt_inicio.errors.required">
+                      Data de início é obrigatório.
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Hora de Início *</label>
+                <input type="time" 
+                       formControlName="hr_inicio" 
+                       class="form-control center"
+                       [ngClass]="{ 'is-invalid': submitted && f.hr_inicio.errors }"
+                       [ngModel]="hr_inicio_aux"
+                       readonly="true">
+                <div *ngIf="submitted && f.hr_inicio.errors" class="invalid-feedback">
+                  <div *ngIf="f.hr_inicio.errors.required">
+                      Hora de início é obrigatório.
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Data do Fim *</label>
+                <input type="date" 
+                       formControlName="dt_fim" 
+                       class="form-control center"
+                       [ngClass]="{ 'is-invalid': submitted && f.dt_fim.errors }"
+                       [ngModel]="dt_fim_aux"
+                       readonly="true">
+                <div *ngIf="submitted && f.dt_fim.errors" class="invalid-feedback">
+                  <div *ngIf="f.dt_fim.errors.required">
+                      Data do fim é obrigatório.
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <div class="col-4 form-group center">
+                <label class="sub-titulo">Hora do Fim *</label>
+                <input type="time" 
+                       formControlName="hr_fim" 
+                       class="form-control center"
+                       [ngClass]="{ 'is-invalid': submitted && f.hr_fim.errors }"
+                       [ngModel]="hr_fim_aux"
+                       readonly="true">
+                <div *ngIf="submitted && f.hr_fim.errors" class="invalid-feedback">
+                  <div *ngIf="f.hr_fim.errors.required">
+                      Hora do fim é obrigatório.
+                  </div>
+                </div>
+              </div>
+          
+                <br>
+        <div class="form-group center">
+            
+
+            <button type="submit" class="btn btn-primary" 
+                [disabled]="!(f.conteiner.valid && f.tipo.valid && f.dt_inicio.valid && f.hr_inicio.valid )">
+                  Apagar
+              </button>
+            
+          </div>
+          <br>
+          <br>
+      </form> 
+    
+</div>
+

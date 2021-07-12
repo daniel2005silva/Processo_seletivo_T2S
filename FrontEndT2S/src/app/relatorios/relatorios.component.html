@@ -1,0 +1,43 @@
+
+    <div class="container">
+        <div class="jumbotron cabecalho">
+            <br>
+            <br>
+            <h1 class="display-4 titulo">RELATÓRIOS</h1>
+            <br>
+        </div>
+    
+        <br>
+        <h5 class="btn btn-secondary float-right "><b>Total de Importação: </b>{{ totalImportacao }}</h5>
+        <h5 class="btn btn-info float-right marginRight"><b>Total de Exportação:</b> {{ totalExportacao }}</h5>   
+        <br>
+    
+        <table class="table table-striped">
+            <thead class="table-light">
+            <tr>
+                <th>Cliente</th>
+                <th>Tipo de Movimentação</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movimentacoes of mov_porClient_porTpMov_s">
+               <td>
+                    {{ movimentacoes.cliente }}
+                </td>
+                <td>
+                    {{ movimentacoes.tipoDeMovimentacao }}
+                </td>
+                <td>
+                    {{ movimentacoes.total }}
+                </td>
+            </tr>
+
+        </tbody>
+        </table>
+
+        
+        <br>
+        <br>
+    </div>
+ 

@@ -1,0 +1,28 @@
+.marginRight{
+    margin-right: 10px;
+}
+
+.cabecalho{
+    background: url("../../../../assets/images/conteiners-balancando.jpg") no-repeat center;
+    background-size: cover;
+    text-align: center;
+}
+
+.titulo{
+    font-weight: bold;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+}
+
+.sub-titulo{
+    font-weight: bold;
+}
+
+.float-right{
+    float: right;
+}
+
+.center{
+    text-align: center;
+    margin: auto;
+}
