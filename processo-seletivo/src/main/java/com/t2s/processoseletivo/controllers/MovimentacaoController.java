@@ -1,0 +1,120 @@
+package com.t2s.processoseletivo.controllers;
+
+import com.t2s.processoseletivo.services.DTOs.MovByClienteByTipo;
+import com.t2s.processoseletivo.models.Movimentacao;
+import com.t2s.processoseletivo.services.ConteinerService;
+import com.t2s.processoseletivo.services.MovimentacaoService;
+import com.t2s.processoseletivo.util.ErrorMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.xml.bind.ValidationException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(path = "/movimentacao")
+public class MovimentacaoController {
+
+    @Autowired
+    MovimentacaoService movimentacaoService;
+
+    @Autowired
+    ConteinerService conteinerService;
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler
+    ErrorMessage exceptionHandler(ValidationException e){
+        return new ErrorMessage("400", e.getMessage());
+    }
+
+    @PostMapping
+    public ResponseEntity<Movimentacao> create(@RequestBody Movimentacao movimentacao) throws ValidationException {
+
+        verificarValores(movimentacao);
+        movimentacao.setTipo(movimentacao.getTipo().toUpperCase());
+        if(movimentacaoService.findByDt_hr_inicioAndConteiner(movimentacao.getDt_hr_inicio(), movimentacao.getConteiner().getId()) > 0){
+            throw new ValidationException("Erro na inserção dos dados: " +
+                    "Data e hora de início para este conteiner já existe. ");
+        }
+        movimentacaoService.save(movimentacao);
+        return  new ResponseEntity<>(movimentacao, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Movimentacao>> getAll(){
+        List<Movimentacao> movimentacoes = new ArrayList<>();
+        movimentacoes = movimentacaoService.findAll();
+        return new ResponseEntity<>(movimentacoes, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Optional<Movimentacao>> getById(@PathVariable Integer id){
+        Optional<Movimentacao> movimentacao;
+        try{
+            movimentacao = movimentacaoService.findById(id);
+            return new ResponseEntity<Optional<Movimentacao>>(movimentacao, HttpStatus.OK);
+        }catch (NoSuchElementException nsee){
+            return  new ResponseEntity<Optional<Movimentacao>>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Optional<Movimentacao>> deleteById(@PathVariable Integer id){
+        try{
+            movimentacaoService.deleteById(id);
+            return  new ResponseEntity<Optional<Movimentacao>>(HttpStatus.OK);
+        }catch (NoSuchElementException nsee){
+            return new ResponseEntity<Optional<Movimentacao>>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Movimentacao> update(@PathVariable Integer id, @RequestBody Movimentacao newMovimentacao) throws ValidationException {
+
+        verificarValores(newMovimentacao);
+        if(movimentacaoService.returnIdByDt_hr_inicioAndConteiner(newMovimentacao.getDt_hr_inicio(), newMovimentacao.getConteiner().getId()) != id){
+            throw new ValidationException("Erro na inserção dos dados: " +
+                    "Provavelmente essa movimentação com essa data e hora de início e conteiner já exista. ");
+        }
+        return movimentacaoService.findById(id)
+                .map(movimentacao -> {
+                    movimentacao.setConteiner(newMovimentacao.getConteiner());
+                    movimentacao.setDt_hr_fim(newMovimentacao.getDt_hr_fim());
+                    movimentacao.setDt_hr_inicio(newMovimentacao.getDt_hr_inicio());
+                    movimentacao.setTipo(newMovimentacao.getTipo().toUpperCase());
+                    Movimentacao containerUpdate = movimentacaoService.save(movimentacao);
+                    return  ResponseEntity.ok().body(containerUpdate);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(path = "/porClienteEporTipoMovimentacao")
+    public List<MovByClienteByTipo> getAllMovimentacoesPorClienteEporTipoMovimentacao(){
+        List<MovByClienteByTipo> movimentacoes = new ArrayList<>();
+        movimentacoes = movimentacaoService.tlMovimentacoesPorClienteEPorTipoMovimentacao();
+        return movimentacoes;
+    }
+
+    public void verificarValores(Movimentacao movimentacao) throws ValidationException {
+        if(        !movimentacao.getTipo().equalsIgnoreCase("EMBARQUE")
+                && !movimentacao.getTipo().equalsIgnoreCase("DESCARGA")
+                && !movimentacao.getTipo().equalsIgnoreCase("GATE IN")
+                && !movimentacao.getTipo().equalsIgnoreCase("GATE OUT")
+                && !movimentacao.getTipo().equalsIgnoreCase("POSICIONAMENTO")
+                && !movimentacao.getTipo().equalsIgnoreCase("PILHA")
+                && !movimentacao.getTipo().equalsIgnoreCase("PESAGEM")
+                && !movimentacao.getTipo().equalsIgnoreCase("SCANNER") ){
+
+            throw new ValidationException("Erro na inserção dos dados: " +
+                    "Tipo deve ser EMBARQUE, ou DESCARGA, ou GATE IN, ou GATE OUT, ou" +
+                    " POSICIONAMENTO, ou PILHA, ou PESAGEM, ou SCANNER.");
+        }else if(!conteinerService.findById(movimentacao.getConteiner().getId()).isPresent()){
+            throw new ValidationException("Erro na inserção dos dados: " +
+                    "Conteiner não existe, adicione um conteiner existente.");
+        }
+    }
+}
