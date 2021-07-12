@@ -96,6 +96,127 @@ public class ConteinerController {
         return total;
     }
 
+    @GetMapping(path = "/filtrar")
+    public ResponseEntity<List<Conteiner>> getAllFiltrado(
+            @RequestParam(value = "cliente", required = false) String cliente,
+            @RequestParam(value = "num_container", required = false) String num_container,
+            @RequestParam(value = "tipo", required = false) String tipo,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "categoria", required = false) String categoria
+    ){
+        List<Conteiner> conteiners = new ArrayList<>();
+        if(cliente != null && num_container != null && tipo != null && status != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndStatusAndCategoria(
+                    cliente, num_container, tipo, status, categoria
+            );
+        }else if(cliente != null && num_container != null && tipo != null && status != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndStatus(
+                    cliente, num_container, tipo, status
+            );
+        }else if(cliente != null && num_container != null && tipo != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndCategoria(
+                    cliente, num_container, tipo, categoria
+            );
+        }else if(cliente != null && num_container != null && status != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndStatusAndCategoria(
+                    cliente, num_container, status, categoria
+            );
+        }else if(cliente != null && tipo != null && status != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndTipoAndStatusAndCategoria(
+                    cliente, tipo, status, categoria
+            );
+        }else if(cliente != null && num_container != null && tipo != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndTipo(
+                    cliente, num_container, tipo
+            );
+        }else if(cliente != null && num_container != null && status != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndStatus(
+                    cliente, num_container, status
+            );
+        }else if(cliente != null && tipo != null && status != null){
+            conteiners = conteinerService.findByClienteAndTipoAndStatus(
+                    cliente, tipo, status
+            );
+        }else if(cliente != null && num_container != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndNum_containerAndCategoria(
+                    cliente, num_container, categoria
+            );
+        }else if(cliente != null && tipo != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndTipoAndCategoria(
+                    cliente, tipo, categoria
+            );
+        }else if(cliente != null && status != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndStatusAndCategoria(
+                    cliente, status, categoria
+            );
+        }else if(cliente != null && num_container != null){
+            conteiners = conteinerService.findByClienteAndNumContainer(
+                    cliente, num_container
+            );
+        }else if(cliente != null && tipo != null){
+            conteiners = conteinerService.findByClienteAndTipo( cliente, tipo );
+        }else if(cliente != null && status != null){
+            conteiners = conteinerService.findByClienteAndStatus( cliente, status );
+        }else if(cliente != null && categoria != null){
+            conteiners = conteinerService.findByClienteAndCategoria( cliente, categoria);
+        }else if(cliente != null){
+            conteiners = conteinerService.findByCliente( cliente );
+        }else if(num_container != null && tipo != null && status != null && categoria != null){
+            conteiners = conteinerService.findByNum_containerAndTipoAndStatusAndCategoria(
+                    num_container, tipo, status, categoria
+            );
+        }else if(num_container != null && tipo != null && status != null){
+            conteiners = conteinerService.findByNum_containerAndTipoAndStatus(
+                    num_container, tipo, status
+            );
+        }else if(num_container != null && tipo != null && categoria != null){
+            conteiners = conteinerService.findByNum_containerAndTipoAndCategoria(
+                    num_container, tipo, categoria
+            );
+        }else if(num_container != null && status != null && categoria != null){
+            conteiners = conteinerService.findByNum_containerAndStatusAndCategoria(
+                    num_container, status, categoria
+            );
+        }else if(num_container != null && tipo != null){
+            conteiners = conteinerService.findByNum_containerAndTipo(
+                    num_container, tipo
+            );
+        }else if(num_container != null && status != null){
+            conteiners = conteinerService.findByNum_containerAndStatus(
+                    num_container, status
+            );
+        }else if(num_container != null && categoria != null){
+            conteiners = conteinerService.findByNum_containerAndCategoria(
+                    num_container, categoria
+            );
+        }else if(num_container != null){
+            conteiners = conteinerService.findByNum_container( num_container );
+        }else if(tipo != null && status != null && categoria != null){
+            conteiners = conteinerService.findByTipoAndStatusAndCategoria(
+                    tipo, status, categoria
+            );
+        }else if(tipo != null && status != null){
+            conteiners = conteinerService.findByTipoAndStatus(
+                    tipo, status
+            );
+        }else if(tipo != null && categoria != null){
+            conteiners = conteinerService.findByTipoAndCategoria( tipo, categoria);
+        }else if(tipo != null){
+            conteiners = conteinerService.findByTipo( tipo );
+        }else if(status != null && categoria != null){
+            conteiners = conteinerService.findByStatusAndCategoria(
+                    status, categoria
+            );
+        }else if(status != null){
+            conteiners = conteinerService.findByStatus( status );
+        }else if(categoria != null){
+            conteiners = conteinerService.findByCategoria( categoria );
+        }
+
+
+        return new ResponseEntity<>(conteiners, HttpStatus.OK);
+    }
+
     public void verificarValores(Conteiner conteiner) throws ValidationException {
         if(conteiner.getTipo() != 20 && conteiner.getTipo() != 40){
             throw new ValidationException("Erro na inserção dos dados: " +
