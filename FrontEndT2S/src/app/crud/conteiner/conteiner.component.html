@@ -6,8 +6,8 @@
             <h1 class="display-4 titulo">CONTEINERS</h1>
             <br>
         </div>
-    
-        <div class="filtro">
+        
+        <div>
             <a href="conteiner/create" class="float-right">
                 <button type="button" class="btn btn-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -16,16 +16,45 @@
                 </button>
             </a>
         </div>
-    
+
         <table class="table table-striped">
             <thead class="table-light">
             <tr>
-                <th>Cliente</th>
-                <th>Número</th>
-                <th>Tipo</th>
-                <th>Status</th>
-                <th>Categoria</th>
-                <th style="width: 180px;">Ações</th>
+                <th>
+                    Cliente
+                    <br>
+                    <input type="search" (change)="filtrar()" 
+                    [(ngModel)]="cliente" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Número
+                    <br>
+                    <input type="search" (change)="filtrar()"
+                    [(ngModel)]="num_container" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Tipo
+                    <br>
+                    <input type="search" (change)="filtrar()"
+                    [(ngModel)]="tipo" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Status
+                    <br>
+                    <input type="text" (change)="filtrar()"
+                    [(ngModel)]="status" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Categoria
+                    <br>
+                    <input type="search" (change)="filtrar()"
+                    [(ngModel)]="categoria" placeholder="..." class="filtro">
+                </th>
+                <th style="width: 180px;">
+                    Ações
+                    <br>
+                    <input type="text" value="Filtro" class="filtro"  readonly="true">
+                </th>
             </tr>
         </thead>
         <tbody>

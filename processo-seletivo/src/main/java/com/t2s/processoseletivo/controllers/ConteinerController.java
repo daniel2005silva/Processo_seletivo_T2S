@@ -106,113 +106,120 @@ public class ConteinerController {
     ){
         List<Conteiner> conteiners = new ArrayList<>();
         if(cliente != null && num_container != null && tipo != null && status != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndStatusAndCategoria(
-                    cliente, num_container, tipo, status, categoria
+            conteiners = conteinerService.findByClienteNum_containerTipoStatusCategoria(
+                    cliente.toLowerCase(), num_container.toUpperCase(), tipo,
+                    status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(cliente != null && num_container != null && tipo != null && status != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndStatus(
-                    cliente, num_container, tipo, status
+            conteiners = conteinerService.findByClienteNum_containerTipoStatus(
+                    cliente.toLowerCase(), num_container.toUpperCase(), tipo, status.toUpperCase()
             );
         }else if(cliente != null && num_container != null && tipo != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndTipoAndCategoria(
-                    cliente, num_container, tipo, categoria
+            conteiners = conteinerService.findByClienteNum_containerTipoCategoria(
+                    cliente.toLowerCase(), num_container.toUpperCase(), tipo, categoria.toUpperCase()
             );
         }else if(cliente != null && num_container != null && status != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndStatusAndCategoria(
-                    cliente, num_container, status, categoria
+            conteiners = conteinerService.findByClienteNum_containerStatusCategoria(
+                    cliente.toLowerCase(), num_container.toUpperCase(),
+                    status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(cliente != null && tipo != null && status != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndTipoAndStatusAndCategoria(
-                    cliente, tipo, status, categoria
+            conteiners = conteinerService.findByClienteTipoStatusCategoria(
+                    cliente.toLowerCase(), tipo, status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(cliente != null && num_container != null && tipo != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndTipo(
-                    cliente, num_container, tipo
+            conteiners = conteinerService.findByClienteNum_containerTipo(
+                    cliente.toLowerCase(), num_container.toUpperCase(), tipo
             );
         }else if(cliente != null && num_container != null && status != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndStatus(
-                    cliente, num_container, status
+            conteiners = conteinerService.findByClienteNum_containerStatus(
+                    cliente.toLowerCase(), num_container.toUpperCase(), status.toUpperCase()
             );
         }else if(cliente != null && tipo != null && status != null){
-            conteiners = conteinerService.findByClienteAndTipoAndStatus(
-                    cliente, tipo, status
+            conteiners = conteinerService.findByClienteTipoStatus(
+                    cliente.toLowerCase(), tipo, status.toUpperCase()
             );
         }else if(cliente != null && num_container != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndNum_containerAndCategoria(
-                    cliente, num_container, categoria
+            conteiners = conteinerService.findByClienteNum_containerCategoria(
+                    cliente.toLowerCase(), num_container.toUpperCase(), categoria.toUpperCase()
             );
         }else if(cliente != null && tipo != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndTipoAndCategoria(
-                    cliente, tipo, categoria
+            conteiners = conteinerService.findByClienteTipoCategoria(
+                    cliente.toLowerCase(), tipo, categoria.toUpperCase()
             );
         }else if(cliente != null && status != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndStatusAndCategoria(
-                    cliente, status, categoria
+            conteiners = conteinerService.findByClienteStatusCategoria(
+                    cliente.toLowerCase(), status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(cliente != null && num_container != null){
-            conteiners = conteinerService.findByClienteAndNumContainer(
-                    cliente, num_container
+            conteiners = conteinerService.findByClienteNumContainer(
+                    cliente.toLowerCase(), num_container.toUpperCase()
             );
         }else if(cliente != null && tipo != null){
-            conteiners = conteinerService.findByClienteAndTipo( cliente, tipo );
+            conteiners = conteinerService.findByClienteTipo( cliente.toLowerCase(), tipo );
         }else if(cliente != null && status != null){
-            conteiners = conteinerService.findByClienteAndStatus( cliente, status );
+            conteiners = conteinerService.findByClienteStatus(
+                    cliente.toLowerCase(), status.toUpperCase()
+            );
         }else if(cliente != null && categoria != null){
-            conteiners = conteinerService.findByClienteAndCategoria( cliente, categoria);
+            conteiners = conteinerService.findByClienteCategoria(
+                    cliente.toLowerCase(), categoria.toUpperCase()
+            );
         }else if(cliente != null){
-            conteiners = conteinerService.findByCliente( cliente );
+            conteiners = conteinerService.findCliente( cliente.toLowerCase() );
         }else if(num_container != null && tipo != null && status != null && categoria != null){
-            conteiners = conteinerService.findByNum_containerAndTipoAndStatusAndCategoria(
-                    num_container, tipo, status, categoria
+            conteiners = conteinerService.findByNum_containerTipoStatusCategoria(
+                    num_container.toUpperCase(), tipo, status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(num_container != null && tipo != null && status != null){
-            conteiners = conteinerService.findByNum_containerAndTipoAndStatus(
-                    num_container, tipo, status
+            conteiners = conteinerService.findByNum_containerTipoStatus(
+                    num_container.toUpperCase(), tipo, status.toUpperCase()
             );
         }else if(num_container != null && tipo != null && categoria != null){
-            conteiners = conteinerService.findByNum_containerAndTipoAndCategoria(
-                    num_container, tipo, categoria
+            conteiners = conteinerService.findByNum_containerTipoCategoria(
+                    num_container.toUpperCase(), tipo, categoria.toUpperCase()
             );
         }else if(num_container != null && status != null && categoria != null){
-            conteiners = conteinerService.findByNum_containerAndStatusAndCategoria(
-                    num_container, status, categoria
+            conteiners = conteinerService.findByNum_containerStatusCategoria(
+                    num_container.toUpperCase(), status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(num_container != null && tipo != null){
-            conteiners = conteinerService.findByNum_containerAndTipo(
-                    num_container, tipo
+            conteiners = conteinerService.findByNum_containerTipo(
+                    num_container.toUpperCase(), tipo
             );
         }else if(num_container != null && status != null){
-            conteiners = conteinerService.findByNum_containerAndStatus(
-                    num_container, status
+            conteiners = conteinerService.findByNum_containerStatus(
+                    num_container.toUpperCase(), status.toUpperCase()
             );
         }else if(num_container != null && categoria != null){
-            conteiners = conteinerService.findByNum_containerAndCategoria(
-                    num_container, categoria
+            conteiners = conteinerService.findByNum_containerCategoria(
+                    num_container.toUpperCase(), categoria.toUpperCase()
             );
         }else if(num_container != null){
-            conteiners = conteinerService.findByNum_container( num_container );
+            conteiners = conteinerService.findNum_container( num_container.toUpperCase() );
         }else if(tipo != null && status != null && categoria != null){
-            conteiners = conteinerService.findByTipoAndStatusAndCategoria(
-                    tipo, status, categoria
+            conteiners = conteinerService.findByTipoStatusCategoria(
+                    tipo, status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(tipo != null && status != null){
-            conteiners = conteinerService.findByTipoAndStatus(
-                    tipo, status
+            conteiners = conteinerService.findByTipoStatus(
+                    tipo, status.toUpperCase()
             );
         }else if(tipo != null && categoria != null){
-            conteiners = conteinerService.findByTipoAndCategoria( tipo, categoria);
+            conteiners = conteinerService.findByTipoCategoria( tipo, categoria.toUpperCase());
         }else if(tipo != null){
-            conteiners = conteinerService.findByTipo( tipo );
+            conteiners = conteinerService.findTipo( tipo );
         }else if(status != null && categoria != null){
-            conteiners = conteinerService.findByStatusAndCategoria(
-                    status, categoria
+            conteiners = conteinerService.findByStatusCategoria(
+                    status.toUpperCase(), categoria.toUpperCase()
             );
         }else if(status != null){
-            conteiners = conteinerService.findByStatus( status );
+            conteiners = conteinerService.findStatus( status.toUpperCase() );
         }else if(categoria != null){
-            conteiners = conteinerService.findByCategoria( categoria );
+            conteiners = conteinerService.findCategoria( categoria.toUpperCase() );
+        }else{
+            conteiners = conteinerService.findAll();
         }
-
 
         return new ResponseEntity<>(conteiners, HttpStatus.OK);
     }

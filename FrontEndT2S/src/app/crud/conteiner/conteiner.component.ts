@@ -11,6 +11,12 @@ export class ConteinerComponent implements OnInit {
 
   conteiners: Conteiner[] = [];
 
+  cliente: string = '';
+  num_container: string = '';
+  tipo: string = '';
+  status: string = '';
+  categoria: string = '';
+
   constructor(
     private dataService: DataService
   ) { }
@@ -25,5 +31,12 @@ export class ConteinerComponent implements OnInit {
     })
   }
 
+  filtrar(){
+    this.dataService.getAllConteinersFiltrado(
+      this.cliente, this.num_container, this.tipo, this.status, this.categoria
+    ).subscribe((data) => {
+      this.conteiners = data
+    })
+  }
   
 }

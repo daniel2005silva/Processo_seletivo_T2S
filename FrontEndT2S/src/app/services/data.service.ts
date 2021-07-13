@@ -67,6 +67,38 @@ export class DataService {
     );
   }
 
+  getAllConteinersFiltrado(
+    cliente: string, num_container: string, tipo: string, status: string, categoria: string
+    ): Observable<Conteiner[]>{
+    const options = { headers: this.headers };
+    let params = '?';
+
+    if(cliente){
+      params += 'cliente=' + cliente + '&';
+    }
+    if(num_container){
+      params += 'num_container=' + num_container + '&';
+    }
+    if(tipo){
+      params += 'tipo=' + tipo + '&';
+    }
+    if(status){
+      params += 'status=' + status + '&';
+    }
+    if(categoria){
+      params += 'categoria=' + categoria + '&';
+    }
+    
+    return this.http.get<Conteiner[]>(
+      this.urlAPI + 'conteiner/filtrar' + params, options
+    );
+  }
+
+
+
+
+
+
   getAllMovimentacoes(): Observable<Movimentacao[]>{
     const options = { headers: this.headers };
 
