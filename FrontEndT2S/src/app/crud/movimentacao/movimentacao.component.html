@@ -7,7 +7,7 @@
             <br>
         </div>
     
-        <div class="filtro">
+        <div>
             <a href="movimentacao/create" class="float-right">
                 <button type="button" class="btn btn-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -20,12 +20,41 @@
         <table class="table table-striped">
             <thead class="table-light">
             <tr>
-                <th>Cliente</th>
-                <th>Conteiner</th>
-                <th>Tipo</th>
-                <th>Data e Hora de Início</th>
-                <th>Data e Hora de Fim</th>
-                <th style="width: 180px;">Ações</th>
+                <th>
+                    Cliente
+                    <br>
+                    <input type="search" (change)="filtrar()" 
+                    [(ngModel)]="cliente" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Conteiner
+                    <br>
+                    <input type="search" (change)="filtrar()" 
+                    [(ngModel)]="conteiner" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Tipo
+                    <br>
+                    <input type="search" (change)="filtrar()" 
+                    [(ngModel)]="tipo" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Data e Hora de Início
+                    <br>
+                    <input type="date" (change)="filtrar()" 
+                    [(ngModel)]="dtInicio" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Data e Hora de Fim
+                    <br>
+                    <input type="date" (change)="filtrar()" 
+                    [(ngModel)]="dtFim" placeholder="..." class="filtro">
+                </th>
+                <th style="width: 180px;">
+                    Ações
+                    <br>
+                    <input type="text" value="Filtro" class="filtro"  readonly="true">
+                </th>
             </tr>
         </thead>
         <tbody>

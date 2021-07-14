@@ -11,6 +11,12 @@ export class MovimentacaoComponent implements OnInit {
 
   movimentacoes: Movimentacao[] = [];
 
+  cliente: string = '';
+  conteiner: string = '';
+  tipo: string = '';
+  dtInicio: string = '';
+  dtFim: string = '';
+
   constructor(
     private dataService: DataService
   ) { }
@@ -22,6 +28,14 @@ export class MovimentacaoComponent implements OnInit {
   allMovimentacoes(){
     this.dataService.getAllMovimentacoes().subscribe((data) => {
       this.movimentacoes = data;
+    })
+  }
+
+  filtrar(){
+    this.dataService.getAllMovimentacoesFiltrado(
+      this.cliente, this.conteiner, this.tipo, this.dtInicio, this.dtFim
+    ).subscribe((data) => {
+      this.movimentacoes = data
     })
   }
 }

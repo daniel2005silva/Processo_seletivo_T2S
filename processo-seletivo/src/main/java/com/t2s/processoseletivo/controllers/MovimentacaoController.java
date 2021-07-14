@@ -111,115 +111,115 @@ public class MovimentacaoController {
 
         if(cliente != null && conteiner != null && tipo != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteConteinerTipoDtInicioDtFim(
-                    cliente, conteiner, tipo, dtInicio, dtFim
+                    cliente.toLowerCase(), conteiner.toUpperCase(), tipo.toUpperCase(), dtInicio, dtFim
             );
         }else if(cliente != null && conteiner != null && tipo != null && dtInicio != null){
             movimentacoes = movimentacaoService.findClienteConteinerTipoDtInicio(
-                    cliente, conteiner, tipo, dtInicio
+                    cliente.toLowerCase(), conteiner.toUpperCase(), tipo.toUpperCase(), dtInicio
             );
         }else if(cliente != null && conteiner != null && tipo != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteConteinerTipoDtFim(
-                    cliente, conteiner, tipo, dtFim
+                    cliente.toLowerCase(), conteiner.toUpperCase(), tipo.toUpperCase(), dtFim
             );
         }else if(cliente != null && conteiner != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteConteinerDtInicioDtFim(
-                    cliente, conteiner, dtInicio, dtFim
+                    cliente.toLowerCase(), conteiner.toUpperCase(), dtInicio, dtFim
             );
         }else if(cliente != null && tipo != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteTipoDtInicioDtFim(
-                    cliente, tipo, dtInicio, dtFim
+                    cliente.toLowerCase(), tipo.toUpperCase(), dtInicio, dtFim
             );
         }else if(cliente != null && conteiner != null && tipo != null){
             movimentacoes = movimentacaoService.findClienteConteinerTipo(
-                    cliente, conteiner, tipo
+                    cliente.toLowerCase(), conteiner.toUpperCase(), tipo.toUpperCase()
             );
         }else if(cliente != null && conteiner != null && dtInicio != null){
             movimentacoes = movimentacaoService.findClienteConteinerDtInicio(
-                    cliente, conteiner, dtInicio
+                    cliente.toLowerCase(), conteiner.toUpperCase(), dtInicio
             );
         }else if(cliente != null && tipo != null && dtInicio != null){
             movimentacoes = movimentacaoService.findClienteTipoDtInicio(
-                    cliente, tipo, dtInicio
+                    cliente.toLowerCase(), tipo.toUpperCase(), dtInicio
             );
         }else if(cliente != null && conteiner != null & dtFim != null){
             movimentacoes = movimentacaoService.findClienteConteinerDtFim(
-                    cliente, conteiner, dtFim
+                    cliente.toLowerCase(), conteiner.toUpperCase(), dtFim
             );
         }else if(cliente != null && tipo != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteTipoDtFim(
-                    cliente, tipo, dtFim
+                    cliente.toLowerCase(), tipo.toUpperCase(), dtFim
             );
         }else if(cliente != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteDtInicioDtFim(
-                    cliente, dtInicio, dtFim
+                    cliente.toLowerCase(), dtInicio, dtFim
             );
         }else if(cliente != null && conteiner != null){
             movimentacoes = movimentacaoService.findClienteConteiner(
-                    cliente, conteiner
+                    cliente.toLowerCase(), conteiner.toUpperCase()
             );
         }else if(cliente != null && tipo != null){
             movimentacoes = movimentacaoService.findClienteTipo(
-                    cliente, tipo
+                    cliente.toLowerCase(), tipo.toUpperCase()
             );
         }else if(cliente != null && dtInicio != null){
             movimentacoes = movimentacaoService.findClienteDtInicio(
-                    cliente, dtInicio
+                    cliente.toLowerCase(), dtInicio
             );
         }else if(cliente != null && dtFim != null){
             movimentacoes = movimentacaoService.findClienteDtFim(
-                    cliente, dtFim
+                    cliente.toLowerCase(), dtFim
             );
         }else if(cliente != null){
             movimentacoes = movimentacaoService.findCliente(
-                    cliente
+                    cliente.toLowerCase()
             );
         }else if(conteiner != null && tipo != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findConteinerTipoDtInicioDtFim(
-                    conteiner, tipo, dtInicio, dtFim
+                    conteiner.toUpperCase(), tipo.toUpperCase(), dtInicio, dtFim
             );
         }else if(conteiner != null && tipo != null && dtInicio != null){
             movimentacoes = movimentacaoService.findConteinerTipoDtInicio(
-                    conteiner, tipo, dtInicio
+                    conteiner.toUpperCase(), tipo.toUpperCase(), dtInicio
             );
         }else if(conteiner != null && tipo != null && dtFim != null){
             movimentacoes = movimentacaoService.findConteinerTipoDtFim(
-                    conteiner, tipo, dtFim
+                    conteiner.toUpperCase(), tipo.toUpperCase(), dtFim
             );
         }else if(conteiner != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findConteinerDtInicioDtFim(
-                    conteiner, dtInicio, dtFim
+                    conteiner.toUpperCase(), dtInicio, dtFim
             );
         }else if(conteiner != null && tipo != null){
             movimentacoes = movimentacaoService.findConteinerTipo(
-                    conteiner, tipo
+                    conteiner.toUpperCase(), tipo.toUpperCase()
             );
         }else if(conteiner != null && dtInicio != null){
             movimentacoes = movimentacaoService.findConteinerDtInicio(
-                    conteiner, dtInicio
+                    conteiner.toUpperCase(), dtInicio
             );
         }else if(conteiner != null && dtFim != null){
             movimentacoes = movimentacaoService.findConteinerDtFim(
-                    conteiner, dtFim
+                    conteiner.toUpperCase(), dtFim
             );
         }else if(conteiner != null){
             movimentacoes = movimentacaoService.findConteiner(
-                    conteiner
+                    conteiner.toUpperCase()
             );
         }else if(tipo != null && dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findTipoDtInicioDtFim(
-                    tipo, dtInicio, dtFim
+                    tipo.toUpperCase(), dtInicio, dtFim
             );
         }else if(tipo != null && dtInicio != null){
             movimentacoes = movimentacaoService.findTipoDtInicio(
-                    tipo, dtInicio
+                    tipo.toUpperCase(), dtInicio
             );
         }else if(tipo != null && dtFim != null){
             movimentacoes = movimentacaoService.findTipoDtFim(
-                   tipo, dtFim
+                   tipo.toUpperCase(), dtFim
             );
         }else if(tipo != null){
             movimentacoes = movimentacaoService.findTipo(
-                    tipo
+                    tipo.toUpperCase()
             );
         }else if(dtInicio != null && dtFim != null){
             movimentacoes = movimentacaoService.findDtInicioDtFim(

@@ -160,4 +160,31 @@ export class DataService {
       this.urlAPI + 'conteiner/totalCategoria/' + categoria, options
     );
   }
+
+  getAllMovimentacoesFiltrado(
+    cliente: string, conteiner: string, tipo: string, dtIncio: string, dtFim: string
+    ): Observable<Movimentacao[]>{
+    const options = { headers: this.headers };
+    let params = '?';
+
+    if(cliente){
+      params += 'cliente=' + cliente + '&';
+    }
+    if(conteiner){
+      params += 'conteiner=' + conteiner + '&';
+    }
+    if(tipo){
+      params += 'tipo=' + tipo + '&';
+    }
+    if(dtIncio){
+      params += 'dtIncio=' + dtIncio + '&';
+    }
+    if(dtFim){
+      params += 'dtFim=' + dtFim + '&';
+    }
+    console.log(params);
+    return this.http.get<Movimentacao[]>(
+      this.urlAPI + 'movimentacao/filtrar' + params, options
+    );
+  }
 }

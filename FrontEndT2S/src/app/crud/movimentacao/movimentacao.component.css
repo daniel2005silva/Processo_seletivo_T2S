@@ -22,3 +22,9 @@
 .table, .filtro{
     background-color: rgba(255,255,255,0.7);
 }
+
+.filtro{
+    width: 100px;
+    height: 20px;
+    opacity: 0.4;
+}
