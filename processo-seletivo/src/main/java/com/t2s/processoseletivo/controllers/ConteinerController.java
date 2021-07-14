@@ -28,6 +28,7 @@ public class ConteinerController {
         return new ErrorMessage("400", e.getMessage());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<Conteiner> create(@RequestBody Conteiner conteiner) throws ValidationException {
         verificarValores(conteiner);
@@ -40,6 +41,7 @@ public class ConteinerController {
         return new ResponseEntity<>(conteiner, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<Conteiner>> getAll(){
         List<Conteiner> conteiners = new ArrayList<>();
@@ -47,6 +49,7 @@ public class ConteinerController {
         return new ResponseEntity<>(conteiners, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<Conteiner>> getById(@PathVariable Integer id){
         Optional<Conteiner> conteiner;
@@ -58,6 +61,7 @@ public class ConteinerController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Optional<Conteiner>> deleteById(@PathVariable Integer id){
         try{
@@ -68,6 +72,7 @@ public class ConteinerController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Conteiner> update(@PathVariable Integer id, @RequestBody Conteiner newConteiner)  throws ValidationException {
 
@@ -90,12 +95,14 @@ public class ConteinerController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/totalCategoria/{categoria}")
     public int getTotalCategoria(@PathVariable String categoria){
         int total = conteinerService.tlCategoria(categoria);
         return total;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/filtrar")
     public ResponseEntity<List<Conteiner>> getAllFiltrado(
             @RequestParam(value = "cliente", required = false) String cliente,

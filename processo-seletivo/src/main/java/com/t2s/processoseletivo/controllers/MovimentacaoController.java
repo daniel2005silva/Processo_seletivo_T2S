@@ -32,6 +32,7 @@ public class MovimentacaoController {
         return new ErrorMessage("400", e.getMessage());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<Movimentacao> create(@RequestBody Movimentacao movimentacao) throws ValidationException {
 
@@ -45,6 +46,7 @@ public class MovimentacaoController {
         return  new ResponseEntity<>(movimentacao, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<Movimentacao>> getAll(){
         List<Movimentacao> movimentacoes = new ArrayList<>();
@@ -52,6 +54,7 @@ public class MovimentacaoController {
         return new ResponseEntity<>(movimentacoes, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<Movimentacao>> getById(@PathVariable Integer id){
         Optional<Movimentacao> movimentacao;
@@ -63,6 +66,7 @@ public class MovimentacaoController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Optional<Movimentacao>> deleteById(@PathVariable Integer id){
         try{
@@ -73,6 +77,7 @@ public class MovimentacaoController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Movimentacao> update(@PathVariable Integer id, @RequestBody Movimentacao newMovimentacao) throws ValidationException {
 
@@ -92,6 +97,7 @@ public class MovimentacaoController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/porClienteEporTipoMovimentacao")
     public List<MovByClienteByTipo> getAllMovimentacoesPorClienteEporTipoMovimentacao(){
         List<MovByClienteByTipo> movimentacoes = new ArrayList<>();
@@ -99,6 +105,7 @@ public class MovimentacaoController {
         return movimentacoes;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/porClienteEporTipoMovimentacao/filtrar")
     public List<MovByClienteByTipo> getMovimentacoesClienteTipoMovimentacaoFiltrado(
             @RequestParam(value = "cliente", required = false) String cliente,
@@ -118,6 +125,7 @@ public class MovimentacaoController {
         return movimentacoes;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/filtrar")
     public ResponseEntity<List<Movimentacao>> getAllFiltrado(
             @RequestParam(value = "cliente", required = false) String cliente,
