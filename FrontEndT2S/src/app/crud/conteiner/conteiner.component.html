@@ -35,20 +35,29 @@
                 <th>
                     Tipo
                     <br>
-                    <input type="search" (change)="filtrar()"
-                    [(ngModel)]="tipo" placeholder="..." class="filtro">
+                    <select (change)="filtrar()" 
+                    [(ngModel)]="tipo" class="filtro">
+                        <option value="20">20</option>
+                        <option value="40">40</option>
+                    </select>
                 </th>
                 <th>
                     Status
                     <br>
-                    <input type="text" (change)="filtrar()"
-                    [(ngModel)]="status" placeholder="..." class="filtro">
+                    <select (change)="filtrar()" 
+                    [(ngModel)]="status" class="filtro">
+                        <option value="CHEIO">CHEIO</option>
+                        <option value="VAZIO">VAZIO</option>
+                    </select>
                 </th>
                 <th>
                     Categoria
                     <br>
-                    <input type="search" (change)="filtrar()"
-                    [(ngModel)]="categoria" placeholder="..." class="filtro">
+                    <select (change)="filtrar()" 
+                    [(ngModel)]="categoria" class="filtro">
+                        <option value="EXPORTAÇÃO">EXPORTAÇÃO</option>
+                        <option value="IMPORTAÇÃO">IMPORTAÇÃO</option>
+                    </select>
                 </th>
                 <th style="width: 180px;">
                     Ações

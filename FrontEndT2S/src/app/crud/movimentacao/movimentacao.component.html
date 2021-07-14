@@ -35,8 +35,17 @@
                 <th>
                     Tipo
                     <br>
-                    <input type="search" (change)="filtrar()" 
-                    [(ngModel)]="tipo" placeholder="..." class="filtro">
+                    <select (change)="filtrar()" 
+                    [(ngModel)]="tipo" class="filtro">
+                        <option value="EMBARQUE">EMBARQUE</option>
+                        <option value="DESCARGA">DESCARGA</option>
+                        <option value="GATE IN">GATE IN</option>
+                        <option value="GATE OUT">GATE OUT</option>
+                        <option value="POSICIONAMENTO">POSICIONAMENTO</option>
+                        <option value="PILHA">PILHA</option>
+                        <option value="PESAGEM">PESAGEM</option>
+                        <option value="SCANNER">SCANNER</option>
+                    </select>
                 </th>
                 <th>
                     Data e Hora de Início

@@ -182,9 +182,27 @@ export class DataService {
     if(dtFim){
       params += 'dtFim=' + dtFim + '&';
     }
-    console.log(params);
+    
     return this.http.get<Movimentacao[]>(
       this.urlAPI + 'movimentacao/filtrar' + params, options
+    );
+  }
+
+  getMovByClienteByTpMovFiltrado(
+    cliente: string, tipo: string
+    ): Observable<MovByClienteByTipo[]>{
+    const options = { headers: this.headers };
+    let params = '?';
+
+    if(cliente){
+      params += 'cliente=' + cliente + '&';
+    }
+    if(tipo){
+      params += 'tipo=' + tipo + '&';
+    }
+
+    return this.http.get<MovByClienteByTipo[]>(
+      this.urlAPI + 'movimentacao/porClienteEporTipoMovimentacao/filtrar' + params, options
     );
   }
 }

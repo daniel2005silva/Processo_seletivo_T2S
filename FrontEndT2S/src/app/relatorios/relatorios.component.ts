@@ -11,6 +11,9 @@ export class RelatoriosComponent implements OnInit {
 
   mov_porClient_porTpMov_s: MovByClienteByTipo[] = [];
 
+  cliente: string = '';
+  tipo: string = '';
+
   totalImportacao: number = 0;
   totalExportacao: number = 0;
 
@@ -36,5 +39,11 @@ export class RelatoriosComponent implements OnInit {
     })
   }
 
-  
+  filtrar(){
+    this.dataService.getMovByClienteByTpMovFiltrado(
+      this.cliente, this.tipo
+    ).subscribe((data) => {
+      this.mov_porClient_porTpMov_s = data
+    })
+  }
 }

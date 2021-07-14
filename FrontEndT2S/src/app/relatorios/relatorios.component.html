@@ -15,9 +15,32 @@
         <table class="table table-striped">
             <thead class="table-light">
             <tr>
-                <th>Cliente</th>
-                <th>Tipo de Movimentação</th>
-                <th>Total</th>
+                <th>
+                    Cliente
+                    <br>
+                    <input type="search" (change)="filtrar()" 
+                    [(ngModel)]="cliente" placeholder="..." class="filtro">
+                </th>
+                <th>
+                    Tipo de Movimentação
+                    <br>
+                    <select (change)="filtrar()" 
+                    [(ngModel)]="tipo" class="filtro">
+                        <option value="EMBARQUE">EMBARQUE</option>
+                        <option value="DESCARGA">DESCARGA</option>
+                        <option value="GATE IN">GATE IN</option>
+                        <option value="GATE OUT">GATE OUT</option>
+                        <option value="POSICIONAMENTO">POSICIONAMENTO</option>
+                        <option value="PILHA">PILHA</option>
+                        <option value="PESAGEM">PESAGEM</option>
+                        <option value="SCANNER">SCANNER</option>
+                    </select>
+                </th>
+                <th>
+                    Total
+                    <br>
+                    <input type="text" value="Filtro" class="filtro"  readonly="true">
+                </th>
             </tr>
         </thead>
         <tbody>

@@ -99,6 +99,25 @@ public class MovimentacaoController {
         return movimentacoes;
     }
 
+    @GetMapping(path = "/porClienteEporTipoMovimentacao/filtrar")
+    public List<MovByClienteByTipo> getMovimentacoesClienteTipoMovimentacaoFiltrado(
+            @RequestParam(value = "cliente", required = false) String cliente,
+            @RequestParam(value = "tipo", required = false) String tipo
+    ){
+        List<MovByClienteByTipo> movimentacoes = new ArrayList<>();
+        if(cliente != null && tipo != null){
+            movimentacoes = movimentacaoService.porClienteTipoMovimentacao(
+                    cliente.toLowerCase(),tipo.toUpperCase());
+        }else if(cliente != null){
+            movimentacoes = movimentacaoService.porCliente(cliente.toLowerCase());
+        }else if(tipo != null){
+            movimentacoes = movimentacaoService.porTipoMovimentacao(tipo.toUpperCase());
+        }else{
+            movimentacoes = movimentacaoService.tlMovimentacoesPorClienteEPorTipoMovimentacao();
+        }
+        return movimentacoes;
+    }
+
     @GetMapping(path = "/filtrar")
     public ResponseEntity<List<Movimentacao>> getAllFiltrado(
             @RequestParam(value = "cliente", required = false) String cliente,

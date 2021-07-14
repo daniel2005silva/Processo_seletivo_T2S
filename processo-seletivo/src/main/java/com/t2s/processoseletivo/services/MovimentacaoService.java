@@ -277,4 +277,27 @@ public interface MovimentacaoService extends JpaRepository<Movimentacao, Integer
             "GROUP BY c.cliente, m.tipo ORDER BY cliente, total DESC", nativeQuery = true)
     List<MovByClienteByTipo> tlMovimentacoesPorClienteEPorTipoMovimentacao();
 
+    @Query(value = "SELECT " +
+            "c.cliente as cliente, m.tipo as tipoDeMovimentacao, COUNT(m.id) as total " +
+            "FROM movimentacoes m, conteiners c WHERE m.conteiner = c.id " +
+            "AND LOWER(c.cliente) LIKE %?1% AND m.tipo LIKE %?2% " +
+            "GROUP BY c.cliente, m.tipo ORDER BY cliente, total DESC", nativeQuery = true)
+    List<MovByClienteByTipo> porClienteTipoMovimentacao(
+            String cliente, String tipoMovimentacao
+    );
+
+    @Query(value = "SELECT " +
+            "c.cliente as cliente, m.tipo as tipoDeMovimentacao, COUNT(m.id) as total " +
+            "FROM movimentacoes m, conteiners c WHERE m.conteiner = c.id " +
+            "AND LOWER(c.cliente) LIKE %?1% " +
+            "GROUP BY c.cliente, m.tipo ORDER BY cliente, total DESC", nativeQuery = true)
+    List<MovByClienteByTipo> porCliente( String cliente);
+
+    @Query(value = "SELECT " +
+            "c.cliente as cliente, m.tipo as tipoDeMovimentacao, COUNT(m.id) as total " +
+            "FROM movimentacoes m, conteiners c WHERE m.conteiner = c.id " +
+            "AND m.tipo LIKE %?1% " +
+            "GROUP BY c.cliente, m.tipo ORDER BY cliente, total DESC", nativeQuery = true)
+    List<MovByClienteByTipo> porTipoMovimentacao( String tipoMovimentacao);
+
 }
