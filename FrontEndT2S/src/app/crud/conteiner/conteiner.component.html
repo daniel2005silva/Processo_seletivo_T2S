@@ -37,6 +37,7 @@
                     <br>
                     <select (change)="filtrar()" 
                     [(ngModel)]="tipo" class="filtro">
+                        <option value=""></option>
                         <option value="20">20</option>
                         <option value="40">40</option>
                     </select>
@@ -46,6 +47,7 @@
                     <br>
                     <select (change)="filtrar()" 
                     [(ngModel)]="status" class="filtro">
+                        <option value=""></option>
                         <option value="CHEIO">CHEIO</option>
                         <option value="VAZIO">VAZIO</option>
                     </select>
@@ -55,6 +57,7 @@
                     <br>
                     <select (change)="filtrar()" 
                     [(ngModel)]="categoria" class="filtro">
+                        <option value=""></option>
                         <option value="EXPORTAÇÃO">EXPORTAÇÃO</option>
                         <option value="IMPORTAÇÃO">IMPORTAÇÃO</option>
                     </select>
